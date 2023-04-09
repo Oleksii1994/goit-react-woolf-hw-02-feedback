@@ -31,8 +31,8 @@ class FeedBackOptions extends Component {
     }));
   };
 
-  countTotal = () => {
-    const total = this.state.good + this.state.neutral + this.state.bad;
+  countTotal = ({ good, bad, neutral } = this.state) => {
+    const total = good + neutral + bad;
     return total;
   };
 
