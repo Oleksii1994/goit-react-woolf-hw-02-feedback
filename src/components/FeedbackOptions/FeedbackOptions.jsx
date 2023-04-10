@@ -1,4 +1,8 @@
-export const Buttons = ({ onGoodClick, onNeutralClick, onBadClick }) => (
+export const FeedbackOptions = ({
+  onGoodClick,
+  onNeutralClick,
+  onBadClick,
+}) => (
   <div>
     <button onClick={onGoodClick}>Good</button>
     <button onClick={onNeutralClick}>Neutral</button>
