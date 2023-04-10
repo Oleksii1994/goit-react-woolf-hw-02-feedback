@@ -14,22 +14,8 @@ class App extends Component {
     bad: this.props.initialValue,
   };
 
-  handleGoodClick = () => {
-    this.setState(({ good }) => ({
-      good: good + 1,
-    }));
-  };
-
-  handleNeutralClick = () => {
-    this.setState(({ neutral }) => ({
-      neutral: neutral + 1,
-    }));
-  };
-
-  handleBadClick = () => {
-    this.setState(({ bad }) => ({
-      bad: bad + 1,
-    }));
+  onLeaveFeedback = option => {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
   };
 
   countTotalFeedback = ({ good, bad, neutral } = this.state) => {
@@ -47,26 +33,23 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="mainContainer">
         <Section title={'Please leave feedback'}>
           <FeedbackOptions
-            onGoodClick={this.handleGoodClick}
-            onNeutralClick={this.handleNeutralClick}
-            onBadClick={this.handleBadClick}
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
 
-        {this.countTotalFeedback() !== 0 && (
-          <Section title="Statistics">
-            <Statistics
-              good={this.state.good}
-              bad={this.state.bad}
-              neutral={this.state.neutral}
-              total={this.countTotalFeedback()}
-              positiveFeedback={this.countPositiveFeedbackPeercentage()}
-            />
-          </Section>
-        )}
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            bad={this.state.bad}
+            neutral={this.state.neutral}
+            total={this.countTotalFeedback()}
+            positiveFeedback={this.countPositiveFeedbackPeercentage()}
+          />
+        </Section>
       </div>
     );
   }
