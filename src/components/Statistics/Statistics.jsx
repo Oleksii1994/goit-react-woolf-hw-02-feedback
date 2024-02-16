@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import { Notification } from 'components/Notification/Notification';
+// import { Notification } from 'components/Notification/Notification';
 import { ContainerStatistics } from './Statistics.styled';
 
 export const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
-  return total === 0 ? (
-    <Notification message="There is no feedbacks yet"></Notification>
-  ) : (
+  return (
     <ContainerStatistics>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>

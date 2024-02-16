@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Notification } from 'components/Notification/Notification';
 
 class App extends Component {
   static defaultProps = {
@@ -42,13 +43,17 @@ class App extends Component {
         </Section>
 
         <Section title="Statistics">
-          <Statistics
-            good={this.state.good}
-            bad={this.state.bad}
-            neutral={this.state.neutral}
-            total={this.countTotalFeedback()}
-            positiveFeedback={this.countPositiveFeedbackPeercentage()}
-          />
+          {this.countTotalFeedback() === 0 ? (
+            <Notification message="There is no feedbacks yet"></Notification>
+          ) : (
+            <Statistics
+              good={this.state.good}
+              bad={this.state.bad}
+              neutral={this.state.neutral}
+              total={this.countTotalFeedback()}
+              positiveFeedback={this.countPositiveFeedbackPeercentage()}
+            />
+          )}
         </Section>
       </div>
     );
